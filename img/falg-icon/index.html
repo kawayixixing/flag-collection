@@ -1,0 +1,4238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">     
+  <title>全球国家旗帜图库</title>
+  <meta name="description" content="由 一鲸整编">
+  <meta property="og:title" content="全球国家旗帜图库">
+  <meta property="og:description" content="由 一鲸整编">
+  <meta name="twitter:card" content="summary">
+  <style type="text/css">
+    html {
+  --textsize: 16px;
+  --textcolor: #eee;
+  --backcolor: #0e0e0f;
+
+  --margin: calc(0.8em + 1vw);
+  --thumbsize: 156px; /* size M */
+  --slide-transition: auto; /* smooth or auto */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font: var(--textsize) / 1.4 -apple-system, BlinkMacSystemFont, 'Segoe UI', Noto, Roboto, Oxygen-Sans, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--textcolor);
+  background: var(--backcolor);
+  padding: var(--margin) var(--margin) 0;
+  overscroll-behavior: contain;
+  -webkit-tap-highlight-color: transparent;
+}
+
+footer {
+  position: sticky;
+  top: 100vh;
+  padding: calc(var(--margin) * 2.5) 0 var(--margin) 0;
+  font-size: 0.85em;
+  opacity: 0.3;
+}
+
+h1 {
+  font-size: 1em;
+}
+
+h1 span {
+  font-weight: normal;
+  display: inline-block;
+}
+
+a {
+  color: currentColor;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* -- Images grid -- */
+
+.grid {
+  clear: both;
+  display: grid;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(auto-fill, minmax(var(--thumbsize), 1fr));
+  grid-gap: calc(var(--margin) * 1.33) var(--margin);
+  padding-top: calc(var(--margin) * 2);
+}
+
+.grid figure {  
+  position: relative;
+}
+
+.grid a {
+  display: block;
+  position: relative;
+  scroll-margin: 20vh 0;
+}
+
+.grid a img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.grid a::before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.grid figcaption {
+  font-size: 0.85em;
+  margin-top: calc(var(--margin) / 2);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.4;
+}
+
+.grid figure a:focus {
+  outline: 0 none;
+  border-radius: 1px;
+  box-shadow: 0 0 0 4px;
+  background: currentColor;
+}
+
+.grid figure a:target {
+  outline: 1px solid;
+  border-radius: 4px;
+}
+
+.grid figure a:hover + figcaption,
+.grid figure a:focus + figcaption {
+  opacity: 1;
+}
+
+/* Thumbnails S M L XL */
+
+input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  direction: rtl;
+}
+
+label {
+  user-select: none;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 0.05em 0.45em;
+  margin-top: -0.05em;
+  float: right;
+  display: none;
+}
+
+label:hover,
+input:focus + label {
+  opacity: 1;
+}
+
+input:focus + label,
+input:checked + label:hover {
+  outline: 1px solid;
+  border-radius: 1px;
+}
+
+input:checked + label {
+  opacity: 1;
+  font-weight: bold;
+}
+
+/* Show only on bigger screens */
+@media (min-width: 820px) {
+  label {
+    display: inline-block;
+  }
+  h1 {
+    display: inline-block;
+    float: left;
+    width: calc(100% - 20ch);
+  }
+}
+
+input#small:checked ~ .grid {
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--thumbsize) / 2), 1fr));
+  grid-gap: var(--margin);
+}
+
+input#large:checked ~ .grid {
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--thumbsize) * 1.5), 1fr));
+  grid-gap: calc(var(--margin) * 1.5);
+}
+
+input#x-large:checked ~ .grid {
+  grid-template-columns: repeat(auto-fill, minmax(calc(var(--thumbsize) * 2), 1fr));
+  grid-gap: calc(var(--margin) * 1.5);
+}
+
+/* -- Lightbox -- */
+
+.lightbox {
+  display:none;
+}
+
+.fixed .lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior: contain;
+  z-index: 5;
+}
+
+.lightbox:hover {
+  scroll-behavior: var(--slide-transition);
+}
+
+.lightbox figure {
+  background: var(--backcolor);
+  position: relative;
+  scroll-snap-align: center;
+  flex: none;
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fix for #permalinks to work…
+
+.lightbox:not(:focus-within) figure:target {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+*/
+
+.lightbox figure:focus {
+  outline: none;
+}
+
+.lightbox figure a.image {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+
+.lightbox figure a.image img {
+  width: auto;
+  height: auto;
+  max-width: 100vw;
+  max-height: 100vh;
+  z-index: 2;
+  opacity: 0;
+}
+
+.lightbox:focus-within figure a.image img,
+.lightbox:not(:focus-within) figure:target a.image img {
+  opacity: 1;
+  transition: 0.35s opacity ease-out;
+}
+
+/* -- Prev / Next -- */
+
+.lightbox figure a.image::before,
+.lightbox figure a.image::after {
+  cursor: pointer;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 33vw;
+  z-index: 3;
+}
+
+.lightbox figure a.image::before {
+  left: -33vw;
+}
+
+.lightbox figure a.image::after {
+  right: -33vw;
+}
+
+.lightbox figure:first-of-type a.image::before,
+.lightbox figure:last-of-type a.image::after {
+  display: none;
+}
+
+/* -- Counter -- */
+
+.lightbox {
+  counter-reset: currentStep 0 remainder 0 totalStep 0;
+}
+
+.lightbox figure {
+  counter-increment: totalStep;
+}
+
+.lightbox figure::before {
+  content: "";
+  counter-increment: currentStep;
+}
+
+.lightbox figure:focus ~ figure::before {
+  counter-increment: remainder;
+}
+
+.counter {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.3;
+  text-shadow: 1px 1px 2px var(--backcolor);
+  z-index: 2;
+  position: fixed;
+  bottom: var(--margin);
+  right: var(--margin);
+}
+
+.lightbox:focus-within .counter::before {
+  content: counter(currentStep) "/" counter(totalStep);
+}
+
+/* -- Close button -- */
+
+a.close {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  z-index: 20;
+  color: transparent;
+  user-select: none;
+  width: 10vmax;
+  height: 10vmax;
+}
+
+a.close:focus-visible {
+  outline: 0;
+}
+
+a.close:hover::before,
+a.close:hover::after,
+.lightbox:focus-within::before,
+.lightbox:focus-within::after {
+  top: 0;
+  right: 0;
+  padding: calc(var(--margin) / 4) calc(var(--margin) / 2) 10vmax 10vmax;
+  display: block;
+  line-height: 1;
+  content: "\00d7";
+  font-size: 2.4em;
+  font-weight: 200;
+  position: fixed;
+  pointer-events: none;
+}
+
+.lightbox:focus-within::before,
+.lightbox:focus-within::after {
+  z-index: 2;
+  opacity:.3;
+}
+
+@media (hover:hover) and (pointer:fine) { 
+  a.close:hover::before,
+  a.close:hover::after {
+    color: var(--textcolor);
+  }
+}
+
+/* -- Loading spinner -- */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lightbox figure::before {
+  content: "";
+  height: 1.5em;
+  width: 1.5em;
+  animation: spin 0.8s infinite linear;
+  border: 1px solid;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  transform: translateX(-50%);
+  opacity: 0.25;
+}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>全球国家旗帜图库 <span>由 一鲸整编</span></h1>
+    <input type="radio" name="size" id="x-large">
+    <label for="x-large">XL</label>
+    <input type="radio" name="size" id="large">
+    <label for="large">L</label>
+    <input checked type="radio" name="size" id="medium">
+    <label for="medium">M</label>
+    <input type="radio" name="size" id="small">
+    <label for="small">S</label>
+    <div class="grid">
+      
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/不丹.png" alt="不丹">
+    </a>
+    <figcaption>不丹</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/东帝汶.png" alt="东帝汶">
+    </a>
+    <figcaption>东帝汶</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/东非共同体.png" alt="东非共同体">
+    </a>
+    <figcaption>东非共同体</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中国.png" alt="中国">
+    </a>
+    <figcaption>中国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中国台湾.png" alt="中国台湾">
+    </a>
+    <figcaption>中国台湾</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中国澳门.png" alt="中国澳门">
+    </a>
+    <figcaption>中国澳门</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中国香港特别行政区.png" alt="中国香港特别行政区">
+    </a>
+    <figcaption>中国香港特别行政区</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中欧自由贸易协定.png" alt="中欧自由贸易协定">
+    </a>
+    <figcaption>中欧自由贸易协定</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/中非共和国.png" alt="中非共和国">
+    </a>
+    <figcaption>中非共和国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/丹麦.png" alt="丹麦">
+    </a>
+    <figcaption>丹麦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/乌克兰.png" alt="乌克兰">
+    </a>
+    <figcaption>乌克兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/乌兹别克斯坦.png" alt="乌兹别克斯坦">
+    </a>
+    <figcaption>乌兹别克斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/乌干达.png" alt="乌干达">
+    </a>
+    <figcaption>乌干达</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/乌拉圭.png" alt="乌拉圭">
+    </a>
+    <figcaption>乌拉圭</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/乍得.png" alt="乍得">
+    </a>
+    <figcaption>乍得</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/也门.png" alt="也门">
+    </a>
+    <figcaption>也门</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/亚美尼亚.png" alt="亚美尼亚">
+    </a>
+    <figcaption>亚美尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/以色列.png" alt="以色列">
+    </a>
+    <figcaption>以色列</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/伊拉克.png" alt="伊拉克">
+    </a>
+    <figcaption>伊拉克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/伊朗.png" alt="伊朗">
+    </a>
+    <figcaption>伊朗</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/伯利兹.png" alt="伯利兹">
+    </a>
+    <figcaption>伯利兹</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/佛得角.png" alt="佛得角">
+    </a>
+    <figcaption>佛得角</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/俄罗斯.png" alt="俄罗斯">
+    </a>
+    <figcaption>俄罗斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/保加利亚.png" alt="保加利亚">
+    </a>
+    <figcaption>保加利亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/克利珀顿岛.png" alt="克利珀顿岛">
+    </a>
+    <figcaption>克利珀顿岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/克罗地亚.png" alt="克罗地亚">
+    </a>
+    <figcaption>克罗地亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/关岛.png" alt="关岛">
+    </a>
+    <figcaption>关岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/冈比亚.png" alt="冈比亚">
+    </a>
+    <figcaption>冈比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/冰岛.png" alt="冰岛">
+    </a>
+    <figcaption>冰岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/几内亚.png" alt="几内亚">
+    </a>
+    <figcaption>几内亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/几内亚比索.png" alt="几内亚比索">
+    </a>
+    <figcaption>几内亚比索</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/列支敦士登.png" alt="列支敦士登">
+    </a>
+    <figcaption>列支敦士登</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/刚果.png" alt="刚果">
+    </a>
+    <figcaption>刚果</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/刚果民主共和国.png" alt="刚果民主共和国">
+    </a>
+    <figcaption>刚果民主共和国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/利比亚.png" alt="利比亚">
+    </a>
+    <figcaption>利比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/利比里亚.png" alt="利比里亚">
+    </a>
+    <figcaption>利比里亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加利西亚.png" alt="加利西亚">
+    </a>
+    <figcaption>加利西亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加拿大.png" alt="加拿大">
+    </a>
+    <figcaption>加拿大</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加泰罗尼亚.png" alt="加泰罗尼亚">
+    </a>
+    <figcaption>加泰罗尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加纳.png" alt="加纳">
+    </a>
+    <figcaption>加纳</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加蓬.png" alt="加蓬">
+    </a>
+    <figcaption>加蓬</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/加那利群岛.png" alt="加那利群岛">
+    </a>
+    <figcaption>加那利群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/匈牙利.png" alt="匈牙利">
+    </a>
+    <figcaption>匈牙利</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/北爱尔兰.png" alt="北爱尔兰">
+    </a>
+    <figcaption>北爱尔兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/北马其顿.png" alt="北马其顿">
+    </a>
+    <figcaption>北马其顿</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/北马里亚纳群岛.png" alt="北马里亚纳群岛">
+    </a>
+    <figcaption>北马里亚纳群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/南乔治亚岛.png" alt="南乔治亚岛">
+    </a>
+    <figcaption>南乔治亚岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/南极洲.png" alt="南极洲">
+    </a>
+    <figcaption>南极洲</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/南苏丹.png" alt="南苏丹">
+    </a>
+    <figcaption>南苏丹</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/南非.png" alt="南非">
+    </a>
+    <figcaption>南非</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/博茨瓦纳.png" alt="博茨瓦纳">
+    </a>
+    <figcaption>博茨瓦纳</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/卡塔尔.png" alt="卡塔尔">
+    </a>
+    <figcaption>卡塔尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/卢旺达.png" alt="卢旺达">
+    </a>
+    <figcaption>卢旺达</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/卢森堡.png" alt="卢森堡">
+    </a>
+    <figcaption>卢森堡</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/印度.png" alt="印度">
+    </a>
+    <figcaption>印度</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/印度尼西亚.png" alt="印度尼西亚">
+    </a>
+    <figcaption>印度尼西亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/危地马拉.png" alt="危地马拉">
+    </a>
+    <figcaption>危地马拉</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/厄瓜多尔.png" alt="厄瓜多尔">
+    </a>
+    <figcaption>厄瓜多尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/厄立特里亚.png" alt="厄立特里亚">
+    </a>
+    <figcaption>厄立特里亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/叙利亚.png" alt="叙利亚">
+    </a>
+    <figcaption>叙利亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/古巴.png" alt="古巴">
+    </a>
+    <figcaption>古巴</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/吉尔吉斯坦.png" alt="吉尔吉斯坦">
+    </a>
+    <figcaption>吉尔吉斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/吉布提.png" alt="吉布提">
+    </a>
+    <figcaption>吉布提</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/哈萨克斯坦.png" alt="哈萨克斯坦">
+    </a>
+    <figcaption>哈萨克斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/哥伦比亚.png" alt="哥伦比亚">
+    </a>
+    <figcaption>哥伦比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/哥斯达黎加.png" alt="哥斯达黎加">
+    </a>
+    <figcaption>哥斯达黎加</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/喀麦隆.png" alt="喀麦隆">
+    </a>
+    <figcaption>喀麦隆</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/图瓦卢.png" alt="图瓦卢">
+    </a>
+    <figcaption>图瓦卢</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/土库曼斯坦.png" alt="土库曼斯坦">
+    </a>
+    <figcaption>土库曼斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/土耳其.png" alt="土耳其">
+    </a>
+    <figcaption>土耳其</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣卢西亚.png" alt="圣卢西亚">
+    </a>
+    <figcaption>圣卢西亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣基茨和尼维斯.png" alt="圣基茨和尼维斯">
+    </a>
+    <figcaption>圣基茨和尼维斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣多美和普林西比.png" alt="圣多美和普林西比">
+    </a>
+    <figcaption>圣多美和普林西比</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣尤斯特歇斯岛.png" alt="圣尤斯特歇斯岛">
+    </a>
+    <figcaption>圣尤斯特歇斯岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣巴泰勒米.png" alt="圣巴泰勒米">
+    </a>
+    <figcaption>圣巴泰勒米</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣文森特岛.png" alt="圣文森特岛">
+    </a>
+    <figcaption>圣文森特岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣皮埃尔和密克隆群岛.png" alt="圣皮埃尔和密克隆群岛">
+    </a>
+    <figcaption>圣皮埃尔和密克隆群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣诞岛.png" alt="圣诞岛">
+    </a>
+    <figcaption>圣诞岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣赫勒拿.png" alt="圣赫勒拿">
+    </a>
+    <figcaption>圣赫勒拿</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣赫勒拿岛.png" alt="圣赫勒拿岛">
+    </a>
+    <figcaption>圣赫勒拿岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣马丁岛.png" alt="圣马丁岛">
+    </a>
+    <figcaption>圣马丁岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圣马力诺.png" alt="圣马力诺">
+    </a>
+    <figcaption>圣马力诺</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/圭亚那.png" alt="圭亚那">
+    </a>
+    <figcaption>圭亚那</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/坦桑尼亚.png" alt="坦桑尼亚">
+    </a>
+    <figcaption>坦桑尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/埃及.png" alt="埃及">
+    </a>
+    <figcaption>埃及</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/埃塞俄比亚.png" alt="埃塞俄比亚">
+    </a>
+    <figcaption>埃塞俄比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/基里巴斯.png" alt="基里巴斯">
+    </a>
+    <figcaption>基里巴斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塔吉克斯坦.png" alt="塔吉克斯坦">
+    </a>
+    <figcaption>塔吉克斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塞内加尔.png" alt="塞内加尔">
+    </a>
+    <figcaption>塞内加尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塞尔维亚.png" alt="塞尔维亚">
+    </a>
+    <figcaption>塞尔维亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塞拉利昂.png" alt="塞拉利昂">
+    </a>
+    <figcaption>塞拉利昂</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塞浦路斯.png" alt="塞浦路斯">
+    </a>
+    <figcaption>塞浦路斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/塞舌尔.png" alt="塞舌尔">
+    </a>
+    <figcaption>塞舌尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/墨西哥.png" alt="墨西哥">
+    </a>
+    <figcaption>墨西哥</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/多哥.png" alt="多哥">
+    </a>
+    <figcaption>多哥</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/多米尼克.png" alt="多米尼克">
+    </a>
+    <figcaption>多米尼克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/多米尼加共和国.png" alt="多米尼加共和国">
+    </a>
+    <figcaption>多米尼加共和国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/太平洋共同体.png" alt="太平洋共同体">
+    </a>
+    <figcaption>太平洋共同体</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/奥兰.png" alt="奥兰">
+    </a>
+    <figcaption>奥兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/奥地利.png" alt="奥地利">
+    </a>
+    <figcaption>奥地利</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/委内瑞拉.png" alt="委内瑞拉">
+    </a>
+    <figcaption>委内瑞拉</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/威尔士.png" alt="威尔士">
+    </a>
+    <figcaption>威尔士</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/孟加拉国.png" alt="孟加拉国">
+    </a>
+    <figcaption>孟加拉国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/安哥拉.png" alt="安哥拉">
+    </a>
+    <figcaption>安哥拉</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/安圭拉岛.png" alt="安圭拉岛">
+    </a>
+    <figcaption>安圭拉岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/安提瓜和巴布达.png" alt="安提瓜和巴布达">
+    </a>
+    <figcaption>安提瓜和巴布达</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/安道尔共和国.png" alt="安道尔共和国">
+    </a>
+    <figcaption>安道尔共和国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/密克罗尼西亚联邦.png" alt="密克罗尼西亚联邦">
+    </a>
+    <figcaption>密克罗尼西亚联邦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/尼加拉瓜.png" alt="尼加拉瓜">
+    </a>
+    <figcaption>尼加拉瓜</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/尼日利亚.png" alt="尼日利亚">
+    </a>
+    <figcaption>尼日利亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/尼日尔.png" alt="尼日尔">
+    </a>
+    <figcaption>尼日尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/尼泊尔.png" alt="尼泊尔">
+    </a>
+    <figcaption>尼泊尔</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴勒斯坦.png" alt="巴勒斯坦">
+    </a>
+    <figcaption>巴勒斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴哈马.png" alt="巴哈马">
+    </a>
+    <figcaption>巴哈马</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴基斯坦.png" alt="巴基斯坦">
+    </a>
+    <figcaption>巴基斯坦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴巴多斯.png" alt="巴巴多斯">
+    </a>
+    <figcaption>巴巴多斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴布亚新几内亚.png" alt="巴布亚新几内亚">
+    </a>
+    <figcaption>巴布亚新几内亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴拉圭.png" alt="巴拉圭">
+    </a>
+    <figcaption>巴拉圭</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴拿马.png" alt="巴拿马">
+    </a>
+    <figcaption>巴拿马</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴斯克自治区.png" alt="巴斯克自治区">
+    </a>
+    <figcaption>巴斯克自治区</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴林.png" alt="巴林">
+    </a>
+    <figcaption>巴林</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/巴西.png" alt="巴西">
+    </a>
+    <figcaption>巴西</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/布基纳法索.png" alt="布基纳法索">
+    </a>
+    <figcaption>布基纳法索</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/布隆迪.png" alt="布隆迪">
+    </a>
+    <figcaption>布隆迪</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/布韦岛.png" alt="布韦岛">
+    </a>
+    <figcaption>布韦岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/希腊.png" alt="希腊">
+    </a>
+    <figcaption>希腊</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/帕劳共和国-帛琉.png" alt="帕劳共和国-帛琉">
+    </a>
+    <figcaption>帕劳共和国-帛琉</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/库克群岛.png" alt="库克群岛">
+    </a>
+    <figcaption>库克群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/库拉索.png" alt="库拉索">
+    </a>
+    <figcaption>库拉索</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/开曼群岛.png" alt="开曼群岛">
+    </a>
+    <figcaption>开曼群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/德国.png" alt="德国">
+    </a>
+    <figcaption>德国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/意大利.png" alt="意大利">
+    </a>
+    <figcaption>意大利</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/所罗门群岛.png" alt="所罗门群岛">
+    </a>
+    <figcaption>所罗门群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/托克劳.png" alt="托克劳">
+    </a>
+    <figcaption>托克劳</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/拉脱维亚.png" alt="拉脱维亚">
+    </a>
+    <figcaption>拉脱维亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/挪威.png" alt="挪威">
+    </a>
+    <figcaption>挪威</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/捷克.png" alt="捷克">
+    </a>
+    <figcaption>捷克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/摩尔多瓦.png" alt="摩尔多瓦">
+    </a>
+    <figcaption>摩尔多瓦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/摩洛哥.png" alt="摩洛哥">
+    </a>
+    <figcaption>摩洛哥</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/摩纳哥.png" alt="摩纳哥">
+    </a>
+    <figcaption>摩纳哥</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/文莱.png" alt="文莱">
+    </a>
+    <figcaption>文莱</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斐济.png" alt="斐济">
+    </a>
+    <figcaption>斐济</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斯威士兰.png" alt="斯威士兰">
+    </a>
+    <figcaption>斯威士兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斯洛伐克.png" alt="斯洛伐克">
+    </a>
+    <figcaption>斯洛伐克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斯洛文尼亚.png" alt="斯洛文尼亚">
+    </a>
+    <figcaption>斯洛文尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斯瓦尔巴和扬马延.png" alt="斯瓦尔巴和扬马延">
+    </a>
+    <figcaption>斯瓦尔巴和扬马延</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/斯里兰卡.png" alt="斯里兰卡">
+    </a>
+    <figcaption>斯里兰卡</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/新加坡.png" alt="新加坡">
+    </a>
+    <figcaption>新加坡</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/新喀里多尼亚.png" alt="新喀里多尼亚">
+    </a>
+    <figcaption>新喀里多尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/新西兰.png" alt="新西兰">
+    </a>
+    <figcaption>新西兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/日本.png" alt="日本">
+    </a>
+    <figcaption>日本</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/智利.png" alt="智利">
+    </a>
+    <figcaption>智利</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/朝鲜.png" alt="朝鲜">
+    </a>
+    <figcaption>朝鲜</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/未知国家.png" alt="未知国家">
+    </a>
+    <figcaption>未知国家</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/柬埔寨.png" alt="柬埔寨">
+    </a>
+    <figcaption>柬埔寨</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/根西岛.png" alt="根西岛">
+    </a>
+    <figcaption>根西岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/格林纳达.png" alt="格林纳达">
+    </a>
+    <figcaption>格林纳达</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/格陵兰岛.png" alt="格陵兰岛">
+    </a>
+    <figcaption>格陵兰岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/格鲁吉亚.png" alt="格鲁吉亚">
+    </a>
+    <figcaption>格鲁吉亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/梵蒂冈.png" alt="梵蒂冈">
+    </a>
+    <figcaption>梵蒂冈</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/欧洲联盟.png" alt="欧洲联盟">
+    </a>
+    <figcaption>欧洲联盟</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/比利时.png" alt="比利时">
+    </a>
+    <figcaption>比利时</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/毛里塔尼亚.png" alt="毛里塔尼亚">
+    </a>
+    <figcaption>毛里塔尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/毛里求斯.png" alt="毛里求斯">
+    </a>
+    <figcaption>毛里求斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/汤加.png" alt="汤加">
+    </a>
+    <figcaption>汤加</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/沙特阿拉伯.png" alt="沙特阿拉伯">
+    </a>
+    <figcaption>沙特阿拉伯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/法国.png" alt="法国">
+    </a>
+    <figcaption>法国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/法国南部和南极土地.png" alt="法国南部和南极土地">
+    </a>
+    <figcaption>法国南部和南极土地</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/法属圭亚那.png" alt="法属圭亚那">
+    </a>
+    <figcaption>法属圭亚那</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/法属玻利尼西亚.png" alt="法属玻利尼西亚">
+    </a>
+    <figcaption>法属玻利尼西亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/法罗群岛.png" alt="法罗群岛">
+    </a>
+    <figcaption>法罗群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/波兰.png" alt="波兰">
+    </a>
+    <figcaption>波兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/波多黎各.png" alt="波多黎各">
+    </a>
+    <figcaption>波多黎各</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/波斯尼亚 黑塞哥维那.png" alt="波斯尼亚 黑塞哥维那">
+    </a>
+    <figcaption>波斯尼亚 黑塞哥维那</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/泰国.png" alt="泰国">
+    </a>
+    <figcaption>泰国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/泽西岛.png" alt="泽西岛">
+    </a>
+    <figcaption>泽西岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/津巴布韦.png" alt="津巴布韦">
+    </a>
+    <figcaption>津巴布韦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/洪都拉斯.png" alt="洪都拉斯">
+    </a>
+    <figcaption>洪都拉斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/海地.png" alt="海地">
+    </a>
+    <figcaption>海地</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/澳大利亚.png" alt="澳大利亚">
+    </a>
+    <figcaption>澳大利亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/爱尔兰.png" alt="爱尔兰">
+    </a>
+    <figcaption>爱尔兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/爱沙尼亚.png" alt="爱沙尼亚">
+    </a>
+    <figcaption>爱沙尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/牙买加.png" alt="牙买加">
+    </a>
+    <figcaption>牙买加</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/特克斯和凯科斯群岛.png" alt="特克斯和凯科斯群岛">
+    </a>
+    <figcaption>特克斯和凯科斯群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/特立尼达和多巴哥.png" alt="特立尼达和多巴哥">
+    </a>
+    <figcaption>特立尼达和多巴哥</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/特里斯坦-达库尼亚.png" alt="特里斯坦-达库尼亚">
+    </a>
+    <figcaption>特里斯坦-达库尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/玻利维亚.png" alt="玻利维亚">
+    </a>
+    <figcaption>玻利维亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瑙鲁.png" alt="瑙鲁">
+    </a>
+    <figcaption>瑙鲁</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瑞典.png" alt="瑞典">
+    </a>
+    <figcaption>瑞典</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瑞士.png" alt="瑞士">
+    </a>
+    <figcaption>瑞士</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瓜德罗普.png" alt="瓜德罗普">
+    </a>
+    <figcaption>瓜德罗普</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瓦利斯和富图纳.png" alt="瓦利斯和富图纳">
+    </a>
+    <figcaption>瓦利斯和富图纳</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/瓦努阿图.png" alt="瓦努阿图">
+    </a>
+    <figcaption>瓦努阿图</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/留尼汪.png" alt="留尼汪">
+    </a>
+    <figcaption>留尼汪</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/白俄罗斯.png" alt="白俄罗斯">
+    </a>
+    <figcaption>白俄罗斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/百慕大群岛.png" alt="百慕大群岛">
+    </a>
+    <figcaption>百慕大群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/皮特凯恩群岛.png" alt="皮特凯恩群岛">
+    </a>
+    <figcaption>皮特凯恩群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/直布罗陀.png" alt="直布罗陀">
+    </a>
+    <figcaption>直布罗陀</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/福克兰群岛（即马尔维纳斯群岛）.png" alt="福克兰群岛（即马尔维纳斯群岛）">
+    </a>
+    <figcaption>福克兰群岛（即马尔维纳斯群岛）</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/科威特.png" alt="科威特">
+    </a>
+    <figcaption>科威特</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/科摩罗.png" alt="科摩罗">
+    </a>
+    <figcaption>科摩罗</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/科特迪瓦.png" alt="科特迪瓦">
+    </a>
+    <figcaption>科特迪瓦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/科科斯（基林）群岛.png" alt="科科斯（基林）群岛">
+    </a>
+    <figcaption>科科斯（基林）群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/科索沃.png" alt="科索沃">
+    </a>
+    <figcaption>科索沃</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/秘鲁.png" alt="秘鲁">
+    </a>
+    <figcaption>秘鲁</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/突尼斯.png" alt="突尼斯">
+    </a>
+    <figcaption>突尼斯</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/立陶宛.png" alt="立陶宛">
+    </a>
+    <figcaption>立陶宛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/索马里.png" alt="索马里">
+    </a>
+    <figcaption>索马里</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/约旦.png" alt="约旦">
+    </a>
+    <figcaption>约旦</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/纳米比亚.png" alt="纳米比亚">
+    </a>
+    <figcaption>纳米比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/纽埃.png" alt="纽埃">
+    </a>
+    <figcaption>纽埃</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/缅甸.png" alt="缅甸">
+    </a>
+    <figcaption>缅甸</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/罗马尼亚.png" alt="罗马尼亚">
+    </a>
+    <figcaption>罗马尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/美国.png" alt="美国">
+    </a>
+    <figcaption>美国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/美国本土外小岛屿.png" alt="美国本土外小岛屿">
+    </a>
+    <figcaption>美国本土外小岛屿</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/美属维尔京群岛.png" alt="美属维尔京群岛">
+    </a>
+    <figcaption>美属维尔京群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/美属萨摩亚.png" alt="美属萨摩亚">
+    </a>
+    <figcaption>美属萨摩亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/老挝.png" alt="老挝">
+    </a>
+    <figcaption>老挝</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/联合国.png" alt="联合国">
+    </a>
+    <figcaption>联合国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/肯尼亚.png" alt="肯尼亚">
+    </a>
+    <figcaption>肯尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/芬兰.png" alt="芬兰">
+    </a>
+    <figcaption>芬兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/苏丹.png" alt="苏丹">
+    </a>
+    <figcaption>苏丹</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/苏格兰.png" alt="苏格兰">
+    </a>
+    <figcaption>苏格兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/苏里南.png" alt="苏里南">
+    </a>
+    <figcaption>苏里南</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/英国.png" alt="英国">
+    </a>
+    <figcaption>英国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/英属印度洋领地.png" alt="英属印度洋领地">
+    </a>
+    <figcaption>英属印度洋领地</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/英属维尔京群岛.png" alt="英属维尔京群岛">
+    </a>
+    <figcaption>英属维尔京群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/英格兰.png" alt="英格兰">
+    </a>
+    <figcaption>英格兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/荷兰.png" alt="荷兰">
+    </a>
+    <figcaption>荷兰</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/荷属圣马丁.png" alt="荷属圣马丁">
+    </a>
+    <figcaption>荷属圣马丁</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/莫桑比克.png" alt="莫桑比克">
+    </a>
+    <figcaption>莫桑比克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/莱索托.png" alt="莱索托">
+    </a>
+    <figcaption>莱索托</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/菲律宾.png" alt="菲律宾">
+    </a>
+    <figcaption>菲律宾</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/萨尔瓦多.png" alt="萨尔瓦多">
+    </a>
+    <figcaption>萨尔瓦多</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/萨摩亚.png" alt="萨摩亚">
+    </a>
+    <figcaption>萨摩亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/葡萄牙.png" alt="葡萄牙">
+    </a>
+    <figcaption>葡萄牙</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/蒙古.png" alt="蒙古">
+    </a>
+    <figcaption>蒙古</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/蒙特塞拉特岛.png" alt="蒙特塞拉特岛">
+    </a>
+    <figcaption>蒙特塞拉特岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/西撒哈拉.png" alt="西撒哈拉">
+    </a>
+    <figcaption>西撒哈拉</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/西班牙.png" alt="西班牙">
+    </a>
+    <figcaption>西班牙</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/诺福克岛.png" alt="诺福克岛">
+    </a>
+    <figcaption>诺福克岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/贝宁.png" alt="贝宁">
+    </a>
+    <figcaption>贝宁</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/赞比亚.png" alt="赞比亚">
+    </a>
+    <figcaption>赞比亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/赤道几内亚.png" alt="赤道几内亚">
+    </a>
+    <figcaption>赤道几内亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/赫德岛和麦克唐纳群岛.png" alt="赫德岛和麦克唐纳群岛">
+    </a>
+    <figcaption>赫德岛和麦克唐纳群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/越南.png" alt="越南">
+    </a>
+    <figcaption>越南</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/迪戈加西亚岛.png" alt="迪戈加西亚岛">
+    </a>
+    <figcaption>迪戈加西亚岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿塞拜疆.png" alt="阿塞拜疆">
+    </a>
+    <figcaption>阿塞拜疆</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿富汗.png" alt="阿富汗">
+    </a>
+    <figcaption>阿富汗</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿尔及利亚.png" alt="阿尔及利亚">
+    </a>
+    <figcaption>阿尔及利亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿尔巴尼亚.png" alt="阿尔巴尼亚">
+    </a>
+    <figcaption>阿尔巴尼亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿拉伯国家联盟.png" alt="阿拉伯国家联盟">
+    </a>
+    <figcaption>阿拉伯国家联盟</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿拉伯联合酋长国.png" alt="阿拉伯联合酋长国">
+    </a>
+    <figcaption>阿拉伯联合酋长国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿曼.png" alt="阿曼">
+    </a>
+    <figcaption>阿曼</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿根廷.png" alt="阿根廷">
+    </a>
+    <figcaption>阿根廷</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿森松岛.png" alt="阿森松岛">
+    </a>
+    <figcaption>阿森松岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/阿鲁巴.png" alt="阿鲁巴">
+    </a>
+    <figcaption>阿鲁巴</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/韩国.png" alt="韩国">
+    </a>
+    <figcaption>韩国</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马尔代夫.png" alt="马尔代夫">
+    </a>
+    <figcaption>马尔代夫</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马恩岛.png" alt="马恩岛">
+    </a>
+    <figcaption>马恩岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马拉维.png" alt="马拉维">
+    </a>
+    <figcaption>马拉维</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马提尼克.png" alt="马提尼克">
+    </a>
+    <figcaption>马提尼克</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马来西亚.png" alt="马来西亚">
+    </a>
+    <figcaption>马来西亚</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马约特.png" alt="马约特">
+    </a>
+    <figcaption>马约特</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马绍尔群岛.png" alt="马绍尔群岛">
+    </a>
+    <figcaption>马绍尔群岛</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马耳他.png" alt="马耳他">
+    </a>
+    <figcaption>马耳他</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马达加斯加.png" alt="马达加斯加">
+    </a>
+    <figcaption>马达加斯加</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/马里.png" alt="马里">
+    </a>
+    <figcaption>马里</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/黎巴嫩.png" alt="黎巴嫩">
+    </a>
+    <figcaption>黎巴嫩</figcaption>
+  </figure>
+  
+  <figure class="landscape">
+    <a href="#" id="-thumb">
+      <img class="open" loading="lazy" width="640" height="480" src="img/falg-icon/黑山.png" alt="黑山">
+    </a>
+    <figcaption>黑山</figcaption>
+  </figure>
+      </div>
+    <div class="lightbox">
+      
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/不丹.png" alt="不丹">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/东帝汶.png" alt="东帝汶">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/东非共同体.png" alt="东非共同体">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中国.png" alt="中国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中国台湾.png" alt="中国台湾">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中国澳门.png" alt="中国澳门">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中国香港特别行政区.png" alt="中国香港特别行政区">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中欧自由贸易协定.png" alt="中欧自由贸易协定">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/中非共和国.png" alt="中非共和国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/丹麦.png" alt="丹麦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/乌克兰.png" alt="乌克兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/乌兹别克斯坦.png" alt="乌兹别克斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/乌干达.png" alt="乌干达">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/乌拉圭.png" alt="乌拉圭">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/乍得.png" alt="乍得">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/也门.png" alt="也门">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/亚美尼亚.png" alt="亚美尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/以色列.png" alt="以色列">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/伊拉克.png" alt="伊拉克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/伊朗.png" alt="伊朗">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/伯利兹.png" alt="伯利兹">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/佛得角.png" alt="佛得角">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/俄罗斯.png" alt="俄罗斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/保加利亚.png" alt="保加利亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/克利珀顿岛.png" alt="克利珀顿岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/克罗地亚.png" alt="克罗地亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/关岛.png" alt="关岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/冈比亚.png" alt="冈比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/冰岛.png" alt="冰岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/几内亚.png" alt="几内亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/几内亚比索.png" alt="几内亚比索">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/列支敦士登.png" alt="列支敦士登">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/刚果.png" alt="刚果">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/刚果民主共和国.png" alt="刚果民主共和国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/利比亚.png" alt="利比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/利比里亚.png" alt="利比里亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加利西亚.png" alt="加利西亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加拿大.png" alt="加拿大">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加泰罗尼亚.png" alt="加泰罗尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加纳.png" alt="加纳">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加蓬.png" alt="加蓬">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/加那利群岛.png" alt="加那利群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/匈牙利.png" alt="匈牙利">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/北爱尔兰.png" alt="北爱尔兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/北马其顿.png" alt="北马其顿">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/北马里亚纳群岛.png" alt="北马里亚纳群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/南乔治亚岛.png" alt="南乔治亚岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/南极洲.png" alt="南极洲">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/南苏丹.png" alt="南苏丹">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/南非.png" alt="南非">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/博茨瓦纳.png" alt="博茨瓦纳">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/卡塔尔.png" alt="卡塔尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/卢旺达.png" alt="卢旺达">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/卢森堡.png" alt="卢森堡">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/印度.png" alt="印度">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/印度尼西亚.png" alt="印度尼西亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/危地马拉.png" alt="危地马拉">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/厄瓜多尔.png" alt="厄瓜多尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/厄立特里亚.png" alt="厄立特里亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/叙利亚.png" alt="叙利亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/古巴.png" alt="古巴">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/吉尔吉斯坦.png" alt="吉尔吉斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/吉布提.png" alt="吉布提">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/哈萨克斯坦.png" alt="哈萨克斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/哥伦比亚.png" alt="哥伦比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/哥斯达黎加.png" alt="哥斯达黎加">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/喀麦隆.png" alt="喀麦隆">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/图瓦卢.png" alt="图瓦卢">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/土库曼斯坦.png" alt="土库曼斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/土耳其.png" alt="土耳其">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣卢西亚.png" alt="圣卢西亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣基茨和尼维斯.png" alt="圣基茨和尼维斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣多美和普林西比.png" alt="圣多美和普林西比">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣尤斯特歇斯岛.png" alt="圣尤斯特歇斯岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣巴泰勒米.png" alt="圣巴泰勒米">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣文森特岛.png" alt="圣文森特岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣皮埃尔和密克隆群岛.png" alt="圣皮埃尔和密克隆群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣诞岛.png" alt="圣诞岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣赫勒拿.png" alt="圣赫勒拿">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣赫勒拿岛.png" alt="圣赫勒拿岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣马丁岛.png" alt="圣马丁岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圣马力诺.png" alt="圣马力诺">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/圭亚那.png" alt="圭亚那">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/坦桑尼亚.png" alt="坦桑尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/埃及.png" alt="埃及">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/埃塞俄比亚.png" alt="埃塞俄比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/基里巴斯.png" alt="基里巴斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塔吉克斯坦.png" alt="塔吉克斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塞内加尔.png" alt="塞内加尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塞尔维亚.png" alt="塞尔维亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塞拉利昂.png" alt="塞拉利昂">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塞浦路斯.png" alt="塞浦路斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/塞舌尔.png" alt="塞舌尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/墨西哥.png" alt="墨西哥">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/多哥.png" alt="多哥">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/多米尼克.png" alt="多米尼克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/多米尼加共和国.png" alt="多米尼加共和国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/太平洋共同体.png" alt="太平洋共同体">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/奥兰.png" alt="奥兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/奥地利.png" alt="奥地利">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/委内瑞拉.png" alt="委内瑞拉">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/威尔士.png" alt="威尔士">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/孟加拉国.png" alt="孟加拉国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/安哥拉.png" alt="安哥拉">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/安圭拉岛.png" alt="安圭拉岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/安提瓜和巴布达.png" alt="安提瓜和巴布达">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/安道尔共和国.png" alt="安道尔共和国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/密克罗尼西亚联邦.png" alt="密克罗尼西亚联邦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/尼加拉瓜.png" alt="尼加拉瓜">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/尼日利亚.png" alt="尼日利亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/尼日尔.png" alt="尼日尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/尼泊尔.png" alt="尼泊尔">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴勒斯坦.png" alt="巴勒斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴哈马.png" alt="巴哈马">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴基斯坦.png" alt="巴基斯坦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴巴多斯.png" alt="巴巴多斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴布亚新几内亚.png" alt="巴布亚新几内亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴拉圭.png" alt="巴拉圭">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴拿马.png" alt="巴拿马">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴斯克自治区.png" alt="巴斯克自治区">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴林.png" alt="巴林">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/巴西.png" alt="巴西">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/布基纳法索.png" alt="布基纳法索">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/布隆迪.png" alt="布隆迪">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/布韦岛.png" alt="布韦岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/希腊.png" alt="希腊">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/帕劳共和国-帛琉.png" alt="帕劳共和国-帛琉">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/库克群岛.png" alt="库克群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/库拉索.png" alt="库拉索">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/开曼群岛.png" alt="开曼群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/德国.png" alt="德国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/意大利.png" alt="意大利">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/所罗门群岛.png" alt="所罗门群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/托克劳.png" alt="托克劳">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/拉脱维亚.png" alt="拉脱维亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/挪威.png" alt="挪威">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/捷克.png" alt="捷克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/摩尔多瓦.png" alt="摩尔多瓦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/摩洛哥.png" alt="摩洛哥">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/摩纳哥.png" alt="摩纳哥">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/文莱.png" alt="文莱">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斐济.png" alt="斐济">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斯威士兰.png" alt="斯威士兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斯洛伐克.png" alt="斯洛伐克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斯洛文尼亚.png" alt="斯洛文尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斯瓦尔巴和扬马延.png" alt="斯瓦尔巴和扬马延">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/斯里兰卡.png" alt="斯里兰卡">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/新加坡.png" alt="新加坡">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/新喀里多尼亚.png" alt="新喀里多尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/新西兰.png" alt="新西兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/日本.png" alt="日本">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/智利.png" alt="智利">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/朝鲜.png" alt="朝鲜">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/未知国家.png" alt="未知国家">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/柬埔寨.png" alt="柬埔寨">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/根西岛.png" alt="根西岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/格林纳达.png" alt="格林纳达">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/格陵兰岛.png" alt="格陵兰岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/格鲁吉亚.png" alt="格鲁吉亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/梵蒂冈.png" alt="梵蒂冈">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/欧洲联盟.png" alt="欧洲联盟">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/比利时.png" alt="比利时">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/毛里塔尼亚.png" alt="毛里塔尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/毛里求斯.png" alt="毛里求斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/汤加.png" alt="汤加">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/沙特阿拉伯.png" alt="沙特阿拉伯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/法国.png" alt="法国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/法国南部和南极土地.png" alt="法国南部和南极土地">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/法属圭亚那.png" alt="法属圭亚那">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/法属玻利尼西亚.png" alt="法属玻利尼西亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/法罗群岛.png" alt="法罗群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/波兰.png" alt="波兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/波多黎各.png" alt="波多黎各">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/波斯尼亚 黑塞哥维那.png" alt="波斯尼亚 黑塞哥维那">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/泰国.png" alt="泰国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/泽西岛.png" alt="泽西岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/津巴布韦.png" alt="津巴布韦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/洪都拉斯.png" alt="洪都拉斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/海地.png" alt="海地">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/澳大利亚.png" alt="澳大利亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/爱尔兰.png" alt="爱尔兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/爱沙尼亚.png" alt="爱沙尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/牙买加.png" alt="牙买加">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/特克斯和凯科斯群岛.png" alt="特克斯和凯科斯群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/特立尼达和多巴哥.png" alt="特立尼达和多巴哥">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/特里斯坦-达库尼亚.png" alt="特里斯坦-达库尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/玻利维亚.png" alt="玻利维亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瑙鲁.png" alt="瑙鲁">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瑞典.png" alt="瑞典">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瑞士.png" alt="瑞士">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瓜德罗普.png" alt="瓜德罗普">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瓦利斯和富图纳.png" alt="瓦利斯和富图纳">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/瓦努阿图.png" alt="瓦努阿图">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/留尼汪.png" alt="留尼汪">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/白俄罗斯.png" alt="白俄罗斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/百慕大群岛.png" alt="百慕大群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/皮特凯恩群岛.png" alt="皮特凯恩群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/直布罗陀.png" alt="直布罗陀">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/福克兰群岛（即马尔维纳斯群岛）.png" alt="福克兰群岛（即马尔维纳斯群岛）">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/科威特.png" alt="科威特">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/科摩罗.png" alt="科摩罗">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/科特迪瓦.png" alt="科特迪瓦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/科科斯（基林）群岛.png" alt="科科斯（基林）群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/科索沃.png" alt="科索沃">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/秘鲁.png" alt="秘鲁">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/突尼斯.png" alt="突尼斯">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/立陶宛.png" alt="立陶宛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/索马里.png" alt="索马里">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/约旦.png" alt="约旦">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/纳米比亚.png" alt="纳米比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/纽埃.png" alt="纽埃">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/缅甸.png" alt="缅甸">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/罗马尼亚.png" alt="罗马尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/美国.png" alt="美国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/美国本土外小岛屿.png" alt="美国本土外小岛屿">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/美属维尔京群岛.png" alt="美属维尔京群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/美属萨摩亚.png" alt="美属萨摩亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/老挝.png" alt="老挝">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/联合国.png" alt="联合国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/肯尼亚.png" alt="肯尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/芬兰.png" alt="芬兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/苏丹.png" alt="苏丹">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/苏格兰.png" alt="苏格兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/苏里南.png" alt="苏里南">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/英国.png" alt="英国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/英属印度洋领地.png" alt="英属印度洋领地">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/英属维尔京群岛.png" alt="英属维尔京群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/英格兰.png" alt="英格兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/荷兰.png" alt="荷兰">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/荷属圣马丁.png" alt="荷属圣马丁">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/莫桑比克.png" alt="莫桑比克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/莱索托.png" alt="莱索托">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/菲律宾.png" alt="菲律宾">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/萨尔瓦多.png" alt="萨尔瓦多">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/萨摩亚.png" alt="萨摩亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/葡萄牙.png" alt="葡萄牙">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/蒙古.png" alt="蒙古">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/蒙特塞拉特岛.png" alt="蒙特塞拉特岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/西撒哈拉.png" alt="西撒哈拉">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/西班牙.png" alt="西班牙">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/诺福克岛.png" alt="诺福克岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/贝宁.png" alt="贝宁">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/赞比亚.png" alt="赞比亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/赤道几内亚.png" alt="赤道几内亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/赫德岛和麦克唐纳群岛.png" alt="赫德岛和麦克唐纳群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/越南.png" alt="越南">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/迪戈加西亚岛.png" alt="迪戈加西亚岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿塞拜疆.png" alt="阿塞拜疆">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿富汗.png" alt="阿富汗">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿尔及利亚.png" alt="阿尔及利亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿尔巴尼亚.png" alt="阿尔巴尼亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿拉伯国家联盟.png" alt="阿拉伯国家联盟">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿拉伯联合酋长国.png" alt="阿拉伯联合酋长国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿曼.png" alt="阿曼">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿根廷.png" alt="阿根廷">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿森松岛.png" alt="阿森松岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/阿鲁巴.png" alt="阿鲁巴">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/韩国.png" alt="韩国">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马尔代夫.png" alt="马尔代夫">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马恩岛.png" alt="马恩岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马拉维.png" alt="马拉维">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马提尼克.png" alt="马提尼克">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马来西亚.png" alt="马来西亚">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马约特.png" alt="马约特">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马绍尔群岛.png" alt="马绍尔群岛">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马耳他.png" alt="马耳他">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马达加斯加.png" alt="马达加斯加">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/马里.png" alt="马里">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/黎巴嫩.png" alt="黎巴嫩">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+  
+  <figure tabindex="0" id="" class="landscape">
+    <a tabindex="-1" href="#" class="image">
+      <img loading="lazy" width="640" height="480" src="img/falg-icon/黑山.png" alt="黑山">
+    </a>
+    <a tabindex="-1" href="#-thumb" class="close">Close</a>
+  </figure>
+     
+      <div class="counter"></div>        
+    </div> 
+  </main>
+  <footer>
+    更新于癸卯年乙丑月辛卯日，如有错误欢迎指正，请给我发送邮件（freheit.agold@gmail.com）
+	<a href="https://flagicons.lipis.dev/"><b>英文版</b></a>
+	</footer>
+  <script>
+  // show lightbox
+  document.addEventListener('click', function(event) {
+    if (!event.target.matches('.open')) return;
+    document.querySelector('body').classList.add('fixed')
+  }, false);
+
+  document.addEventListener(
+    "keydown", (e) => {
+      if (e.keyCode == 13) {
+        document.activeElement.click();
+        document.querySelector('body').classList.add('fixed')
+      }
+    }, false);
+
+  // hide lightbox
+  document.addEventListener('click', function(event) {
+    if (!event.target.matches('.close')) return;
+    document.querySelector('body').classList.remove('fixed')
+  }, false);
+
+  // esc key to close
+  document.addEventListener(
+    "keydown", (e) => {
+      if (e.keyCode == 27) {
+        document.activeElement.querySelector('.close').click();
+        document.querySelector('body').classList.remove('fixed');
+      }
+    }, false);
+
+  </script>
+</body>
+</html>
